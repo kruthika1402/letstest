@@ -1,14 +1,21 @@
-name: Developer Build
+name: DevOps Managed Build
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+      application-name:
+        required: true
+        type: string
 
 jobs:
   build:
-    uses: DevOps-Managed-Org/devops-workflows/.github/workflows/build.yml@v1
-    with:
-      environment: dev
-      application-name: my-app
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Build
+        run: |
+          echo "Building ${{ inputs.application-name }}"
+          echo "Environment: ${{ inputs.environment }}"
