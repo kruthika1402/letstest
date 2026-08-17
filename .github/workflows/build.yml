@@ -1,0 +1,14 @@
+name: Developer Build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    uses: DevOps-Managed-Org/devops-workflows/.github/workflows/build.yml@v1
+    with:
+      environment: dev
+      application-name: my-app
